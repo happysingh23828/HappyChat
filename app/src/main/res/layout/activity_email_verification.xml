@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="happysingh.thehappychat.Email_verification"
+    android:background="@drawable/bg_profilw">
+    <include layout="@layout/tool_bar_my" android:id="@+id/email_verify_toolbar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:layout_marginTop="70dp"
+            android:text="We Have Sent You A Verification Link On Your Email "
+            android:fontFamily="@font/londrina_solid"
+            android:textColor="#fff"
+            android:textSize="40sp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textSize="30sp"
+            android:layout_gravity="center"
+           android:textAlignment="center"
+            android:textColor="#fff"
+            android:alpha="0.6"
+            android:text="After Clicking On That Link
+Click Below Button"
+            android:fontFamily="@font/alfa_slab_one"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:textSize="15sp"
+            android:fontFamily="@font/black_ops_one"
+            android:textColor="#fff"
+            android:background="@drawable/single_shape_button_2"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/verifyemail"
+
+            android:text="I Clicked On Verification Link"/>
+    </LinearLayout>
+
+</RelativeLayout>

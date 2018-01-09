@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="happysingh.thehappychat.ChatScreen"
+    >
+
+    <include
+        android:id="@+id/chatToolBaar"
+        layout="@layout/tool_bar_my"
+         />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/chatToolBaar"
+        android:id="@+id/single_chat_recyclerView"
+        app:reverseLayout="true">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:weightSum="10"
+        android:id="@+id/linearLayout2">
+
+
+        <ImageView
+            android:id="@+id/attach_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            app:srcCompat="@drawable/ic_attach_file_black_24dp"
+            android:alpha="0.5"
+            android:background="#fff"
+            android:padding="10dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:background="#fff"
+            android:ems="10"
+            android:hint="Enter Your Message Here"
+            android:inputType="textPersonName"
+            android:padding="5dp"
+            android:id="@+id/msg"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            app:srcCompat="@drawable/ic_send_black_24dp"
+            android:alpha="0.5"
+            android:background="#fff"
+            android:padding="10dp"
+            android:id="@+id/send"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

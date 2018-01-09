@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">The Happy Chat</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="photo_icon">[@drawable/camera-clip-art-779062] Photo</string>
+</resources>

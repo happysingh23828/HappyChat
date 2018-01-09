@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    >
+
+
+    <LinearLayout
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
+        >
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_id_single_user"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="4"
+            android:src="@drawable/profile_round"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/name_id_single_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="109dp"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/londrina_solid"
+        android:text="Happy Singh"
+        android:textColor="#123"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/status_id_single_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignLeft="@+id/name_id_single_user"
+        android:layout_alignStart="@+id/name_id_single_user"
+        android:layout_below="@+id/name_id_single_user"
+        android:layout_marginTop="11dp"
+        android:text="Friends Since  Date 31 DEC 2017" />
+
+    <ImageView
+        android:id="@+id/online"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignBottom="@+id/name_id_single_user"
+        android:layout_alignEnd="@+id/status_id_single_user"
+        android:layout_alignRight="@+id/status_id_single_user"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        app:srcCompat="@drawable/online" />
+
+
+</RelativeLayout>

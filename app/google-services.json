@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1085393617261",
+    "firebase_url": "https://happy-chat-8a939.firebaseio.com",
+    "project_id": "happy-chat-8a939",
+    "storage_bucket": "happy-chat-8a939.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085393617261:android:5e1c0e7e33f80f02",
+        "android_client_info": {
+          "package_name": "happysingh.thehappychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085393617261-m7tpmfqsv6ml0r76c6rn5kujc5r5o3i0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "happysingh.thehappychat",
+            "certificate_hash": "bedb5aa8d2b254b3317e008913640e103089fe5b"
+          }
+        },
+        {
+          "client_id": "1085393617261-3ejtnsqh7cs7vp0i3nbmnnk7on9n82in.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATgHFNKrkfK85i7sl_b0xNzxGSobgd-0E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085393617261-3ejtnsqh7cs7vp0i3nbmnnk7on9n82in.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

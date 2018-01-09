@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context="happysingh.thehappychat.Signup_page">
+
+
+    <include layout="@layout/tool_bar_my" android:id="@+id/signup_toolbar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="The Happy Chat "
+            android:textSize="30sp"
+            android:textColor="#fff"
+            android:fontFamily="@font/alfa_slab_one"
+            android:paddingTop="70dp"
+            android:textAlignment="center"
+            android:layout_weight="3"/>
+
+        <EditText
+            android:id="@+id/et_signup_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+
+            android:layout_marginRight="30dp"
+            android:background="@drawable/single_edit_text"
+            android:padding="10dp"
+            android:ems="10"
+            android:hint="Enter Your Name"
+            android:inputType="textCapWords"
+            android:textColor="#37373A"
+            android:textSize="20sp"
+
+
+            />
+
+        <EditText
+            android:id="@+id/et_signup_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginTop="30dp"
+            android:inputType="textEmailAddress"
+            android:hint="Enter Yor Email"
+            android:padding="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/single_edit_text"
+            android:textSize="20sp"
+            android:textColor="#37373A"
+
+
+            />
+
+        <EditText
+            android:id="@+id/et_signup_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:textColor="#37373A"
+            android:padding="10dp"
+            android:layout_margin="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/single_edit_text"
+            android:textSize="20sp"
+
+            />
+
+        <Button
+            android:id="@+id/bt_signup_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SIGN UP"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:textSize="20sp"
+            android:textColor="#fff"
+            android:background="@drawable/single_shape_button_2"
+            android:layout_marginBottom="20dp"
+
+            android:fontFamily="@font/black_ops_one"
+
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textColor="#fff"
+                android:fontFamily="@font/londrina_solid"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginBottom="10dp"
+                android:text="Have Account ?"/>
+
+            <Button
+                android:id="@+id/bt_signup_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Login"
+                android:background="@drawable/single_button_shape"
+                android:layout_marginRight="35dp"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:textColor="#fff"
+                android:fontFamily="@font/bungee_inline"
+                android:layout_marginBottom="10dp"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

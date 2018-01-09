@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:padding="10dp">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/chat_profile"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/profile_round"
+        android:src="@drawable/profile_round"/>
+
+    <TextView
+        android:id="@+id/chat_single_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_toEndOf="@+id/chat_profile"
+        android:layout_toRightOf="@+id/chat_profile"
+        android:fontFamily="@font/londrina_solid"
+        android:text="Happy Singh"
+        android:textColor="#123"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/chat_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/chat_single_name"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:text="02:30pm" />
+
+    <TextView
+        android:id="@+id/chat_last_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/chat_profile"
+        android:layout_alignLeft="@+id/chat_single_name"
+        android:layout_alignStart="@+id/chat_single_name"
+        android:layout_marginBottom="11dp"
+        android:text="hiiii kaise ho bhai tu,"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/chat_seen"
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_alignBottom="@+id/chat_last_msg"
+        android:layout_alignEnd="@+id/chat_time"
+        android:layout_alignRight="@+id/chat_time"
+        app:srcCompat="@drawable/unseen" />
+
+</RelativeLayout>
