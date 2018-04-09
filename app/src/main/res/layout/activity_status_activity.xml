@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="happysingh.thehappychat.Status_activity"
-    android:background="@drawable/bg_chat">
+    android:background="@drawable/background">
 
 
     <include layout="@layout/tool_bar_my" android:id="@+id/status_tool"/>

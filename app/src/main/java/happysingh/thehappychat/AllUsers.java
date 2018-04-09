@@ -53,7 +53,7 @@ public class AllUsers extends AppCompatActivity {
     ListView ls;
     RecyclerView userslist;
     DatabaseReference databaseReference;
-    FirebaseAuth mauth;
+    FirebaseAuth mauth = FirebaseAuth.getInstance();;
     EditText search_text;
     String searching_friend;
     ImageView search_btn;
@@ -71,8 +71,9 @@ public class AllUsers extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         // Setting  Firebase Database
-        mauth = FirebaseAuth.getInstance();
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
         databaseReference.keepSynced(true);
