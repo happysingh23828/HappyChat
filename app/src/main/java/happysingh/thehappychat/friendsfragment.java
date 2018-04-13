@@ -143,6 +143,8 @@ public class friendsfragment extends Fragment {
                                         }
                                         else
                                         {
+                                            FirebaseDatabase.getInstance().getReference().child("chat").child(List_user_id).child(current_userid)
+                                                    .child("seen").setValue(true);
                                             Intent i = new Intent(getContext(),ChatScreen.class);
                                             i.putExtra("user_id",List_user_id);
                                             i.putExtra("user_name",username);
