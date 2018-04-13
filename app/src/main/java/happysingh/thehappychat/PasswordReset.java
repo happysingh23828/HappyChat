@@ -53,7 +53,7 @@ public class PasswordReset extends AppCompatActivity {
                 {
                     progressDialog1 = new ProgressDialog(PasswordReset.this);
                     progressDialog1.setTitle("Sending Password Reset Link");
-                    progressDialog1.setMessage("after THis Check Your EMail!");
+                    progressDialog1.setMessage("after THis Check Your Email!");
                     progressDialog1.show();
                     FirebaseAuth auth = FirebaseAuth.getInstance();
                     String emailAddress = email.getText().toString();

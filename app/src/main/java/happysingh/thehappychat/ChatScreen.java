@@ -98,6 +98,8 @@ public class ChatScreen extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
 
+
+
         LayoutInflater layoutInflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View action_bar_view = layoutInflater.inflate(R.layout.chat_custome_bar,null);
         actionBar.setCustomView(action_bar_view);
@@ -429,7 +431,9 @@ public class ChatScreen extends AppCompatActivity {
 
             if((msg_type.equals("send") || msg_type.equals("receive")) && type.equals("image"))
             {
-               // Picasso.with(c).load(msg).into(imageView);
+
+
+
                 textView.setVisibility(View.GONE);
                 Picasso.with(c).load(msg).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, new Callback() {
                     @Override

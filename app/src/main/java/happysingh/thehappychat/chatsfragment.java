@@ -83,7 +83,7 @@ public class chatsfragment extends Fragment {
 
         FirebaseRecyclerAdapter<chat,ChatViewHolder> adapter = new FirebaseRecyclerAdapter<chat, ChatViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull final ChatViewHolder holder, int position, @NonNull chat model) {
+            protected void onBindViewHolder(@NonNull final ChatViewHolder holder, int position, @NonNull final chat model) {
 
                 // fetching name and image of user that chatted before;
                 final String single_chat_user_id = getRef(position).getKey();
@@ -121,8 +121,14 @@ public class chatsfragment extends Fragment {
                         @Override
                         public void onClick(View v) {
 
-                            FirebaseDatabase.getInstance().getReference().child("chat").child(single_chat_user_id).child(current_userid)
-                                    .child("seen").setValue(true);
+                            if(!model.getFrom().equals(current_userid))
+                            {
+                                FirebaseDatabase.getInstance().getReference().child("chat").child(single_chat_user_id).child(current_userid)
+                                        .child("seen").setValue(true);
+
+                                FirebaseDatabase.getInstance().getReference().child("chat").child(current_userid).child(single_chat_user_id)
+                                        .child("seen").setValue(true);
+                            }
 
                             Intent i = new Intent(getContext(),ChatScreen.class);
                             i.putExtra("user_id",single_chat_user_id);
@@ -212,13 +218,27 @@ public class chatsfragment extends Fragment {
             {
                 textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_camera_alt_black_24dp,0,0,0); // Setting Photo Icon
                 textView.setText("  Photo");
-                imageView.setVisibility(View.GONE);
+
+                if(!seen)
+                {
+                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.comemsg));
+
+                }
+                else
+                    imageView.setVisibility(View.GONE);
+
             }
 
             if(type.equals("text") && !getfrom.equals(current_userid))
             {
                 textView.setText(msg);
-                imageView.setVisibility(View.GONE);
+                if(!seen)
+                {
+                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.comemsg));
+
+                }
+                else
+                    imageView.setVisibility(View.GONE);
             }
 
         }
