@@ -173,7 +173,7 @@ public class ChatScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(message.equals(""))
+                if(message.equals(null))
                 {
                     message.setError("can't send blank message");
                 }
@@ -330,7 +330,7 @@ public class ChatScreen extends AppCompatActivity {
         final int[] positionitem = new int[1];
 
         Query query = rootref.child("messages").child(uid).child(current_user)
-                .limitToLast(10);
+                .limitToLast(30);
 
         FirebaseRecyclerOptions<messages> options = new FirebaseRecyclerOptions.Builder<messages>()
                 .setQuery(query,messages.class)

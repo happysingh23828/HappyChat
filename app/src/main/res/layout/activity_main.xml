@@ -17,7 +17,11 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabIndicatorColor="@android:color/white"
+            android:background="@drawable/background"
+            app:tabTextColor="#bcc4d1">
 
 
         </android.support.design.widget.TabLayout>
@@ -29,7 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/appBarLayout">
+        android:layout_below="@+id/appBarLayout"
+        android:background="#E8EAF6">
 
 
     </android.support.v4.view.ViewPager>

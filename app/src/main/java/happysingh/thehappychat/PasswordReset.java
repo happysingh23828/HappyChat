@@ -72,7 +72,8 @@ public class PasswordReset extends AppCompatActivity {
                                     }
                                     else
                                     {
-                                        Toast.makeText(PasswordReset.this,"An Error Occured",Toast.LENGTH_LONG).show();
+                                        progressDialog1.dismiss();
+                                        Toast.makeText(PasswordReset.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
                                     }
                                 }

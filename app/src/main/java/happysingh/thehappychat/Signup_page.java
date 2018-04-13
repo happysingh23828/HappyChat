@@ -88,7 +88,7 @@ public class Signup_page extends AppCompatActivity {
 
     }
 
-    public void Registration(EditText name, EditText email, EditText password) {
+    public void Registration(final EditText name, final EditText email, final EditText password) {
       final   String Name = name.getText().toString();
       final   String Email = email.getText().toString();
       final   String Password = password.getText().toString();
@@ -110,7 +110,7 @@ public class Signup_page extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
 
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                             user.sendEmailVerification()
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -118,11 +118,14 @@ public class Signup_page extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 progressDialog.dismiss();
+                                                Email_verification email_verification  = new Email_verification();
+                                                email_verification.sendDataToFirebase(user.getUid(),Name,Email,Password,false);
                                                 Intent i = new Intent(Signup_page.this,Email_verification.class);
-                                                i.putExtra("name",Name);
-                                                i.putExtra("email",Email);
-                                                i.putExtra("password",Password);
                                                 startActivity(i);
+                                            }
+                                            else
+                                            {
+                                                Toast.makeText(Signup_page.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
@@ -130,7 +133,7 @@ public class Signup_page extends AppCompatActivity {
                         else
                         {
                             progressDialog.cancel();
-                            Toast.makeText(Signup_page.this,"An Error Occured Please Try Again",Toast.LENGTH_LONG).show();
+                            Toast.makeText(Signup_page.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

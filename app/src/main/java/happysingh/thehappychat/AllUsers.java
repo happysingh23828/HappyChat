@@ -65,11 +65,9 @@ public class AllUsers extends AppCompatActivity {
         setContentView(R.layout.activity_all_users);
 
         //setting Toolbar
-        toolbar = (Toolbar) findViewById(R.id.all_users_tool);
         search_text =(EditText)findViewById(R.id.search_user_text);
         search_btn = (ImageView)findViewById(R.id.search_button) ;
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
         // Setting  Firebase Database

@@ -102,7 +102,7 @@ public class login_page extends AppCompatActivity {
                             else
                             {
                                 progressDialog.cancel();
-                                Toast.makeText(login_page.this,"An Error Occured While Login",Toast.LENGTH_LONG).show();
+                                Toast.makeText(login_page.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
                             }
                     }
                 });

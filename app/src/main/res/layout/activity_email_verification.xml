@@ -25,18 +25,7 @@
             android:textSize="40sp"
             android:textAlignment="center"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textSize="30sp"
-            android:layout_gravity="center"
-           android:textAlignment="center"
-            android:textColor="#fff"
-            android:alpha="0.6"
-            android:text="After Clicking On That Link
-Click Below Button"
-            android:fontFamily="@font/alfa_slab_one"/>
+
 
         <Button
             android:layout_width="match_parent"
@@ -52,7 +41,7 @@ Click Below Button"
             android:layout_marginBottom="20dp"
             android:id="@+id/verifyemail"
 
-            android:text="I Clicked On Verification Link"/>
+            android:text="Go to Login Screen"/>
     </LinearLayout>
 
 </RelativeLayout>

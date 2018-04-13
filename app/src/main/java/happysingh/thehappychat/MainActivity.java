@@ -1,6 +1,10 @@
 package happysingh.thehappychat;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +17,8 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     android.support.v7.widget.Toolbar toolbar;
     ViewPager viewPager;
     TabLayout tabLayout;
+    ProgressDialog progressDialog;
+
 
     //Creating A Fragment Page Adaptor Class Objects
     FragmenAdapter fragmenAdapter;
@@ -52,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Setting Tab Layout with pager
         tabLayout = (TabLayout)findViewById(R.id.tab_main);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
         tabLayout.setupWithViewPager(viewPager);
 
 
@@ -65,22 +75,38 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         // Checking User Is Logging In Or Not;
-          FirebaseUser  user= mauth.getCurrentUser();
+          final FirebaseUser  user= mauth.getCurrentUser();
         if(user==null )
         {
             gotostartpage();
         }
         else if(!user.isEmailVerified())
         {
-            //FirebaseAuth.getInstance().signOut();
-            //user.delete();
-            //gotostartpage();
-            databaseReference.child(mauth.getCurrentUser().getUid()).child("online").setValue("true");
+            progressDialog = new ProgressDialog(MainActivity.this);
+            progressDialog.setTitle("Sending You Email.....");
+            progressDialog.setMessage("Please Wait While Sending an Email");
+            progressDialog.show();
+            user.sendEmailVerification()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                progressDialog.dismiss();
+                                Intent i = new Intent(MainActivity.this,Email_verification.class);
+
+                                startActivity(i);
+                                finish();
+                            }
+                            progressDialog.dismiss();
+
+                        }
+                    });
         }
 
         else
         {
-            //databaseReference.child(mauth.getCurrentUser().getUid()).child("online").setValue("true");
+            databaseReference.child(mauth.getCurrentUser().getUid()).child("isemailverified").setValue(true);
+            databaseReference.child(mauth.getCurrentUser().getUid()).child("online").setValue("true");
         }
     }
 
@@ -90,19 +116,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //databaseReference.child(mauth.getCurrentUser().getUid()).child("online").setValue("true");
+        FirebaseUser  user= mauth.getCurrentUser();
+        if(user!=null) {
+
+            databaseReference.child(mauth.getCurrentUser().getUid()).child("online").setValue("true");
+        }
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-    // databaseReference.child(mauth.getCurrentUser().getUid()).child("online").setValue("true");
-    }
+        FirebaseUser  user= mauth.getCurrentUser();
+        if(user!=null)
+        {
+            databaseReference.child(mauth.getCurrentUser().getUid()).child("online").setValue("true");
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-     //  databaseReference.child(mauth.getCurrentUser().getUid()).child("online").setValue(ServerValue.TIMESTAMP);
+        }
     }
 
     // This Is Call When Menu Bar Is Initialized On top
@@ -112,6 +141,20 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu,menu);
         return true;
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        FirebaseUser  user= mauth.getCurrentUser();
+        if(user!=null)
+        {
+
+            databaseReference.child(mauth.getCurrentUser().getUid()).child("online").setValue(ServerValue.TIMESTAMP);
+
+        }
+
+    }
+
 
     // This is call When  Menu Bar Items Are Selected
 

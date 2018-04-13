@@ -4,62 +4,98 @@
     android:layout_width="match_parent" android:layout_height="wrap_content"
     >
 
-
-    <LinearLayout
-        android:layout_width="120dp"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout"
-        >
+        android:translationZ="10dp"
+        android:elevation="100dp"
+        android:layout_margin="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_id_single_user"
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/profile_round"
+                android:src="@drawable/profile_round"
+                android:padding="5dp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/name_id_single_user"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/londrina_solid"
+                        android:text="Happy Singh"
+                        android:textColor="#123"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/online"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1"
+                        android:padding="5dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
+                        app:srcCompat="@drawable/online" />
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_id_single_user"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="4"
-            android:src="@drawable/profile_round"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/status_id_single_user"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:textSize="14sp"
+                        android:padding="5dp"/>
 
 
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/name_id_single_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="109dp"
-        android:layout_marginStart="109dp"
-        android:layout_marginTop="14dp"
-        android:fontFamily="@font/londrina_solid"
-        android:text="Happy Singh"
-        android:textColor="#123"
-        android:textSize="20sp" />
+                </LinearLayout>
 
-    <TextView
-        android:id="@+id/status_id_single_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        android:layout_alignLeft="@+id/name_id_single_user"
-        android:layout_alignStart="@+id/name_id_single_user"
-        android:layout_below="@+id/name_id_single_user"
-        android:layout_marginTop="11dp"
-        android:text="Friends Since  Date 31 DEC 2017" />
+            </LinearLayout>
 
-    <ImageView
-        android:id="@+id/online"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_alignBottom="@+id/name_id_single_user"
-        android:layout_alignEnd="@+id/status_id_single_user"
-        android:layout_alignRight="@+id/status_id_single_user"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="17dp"
-        app:srcCompat="@drawable/online" />
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+
+
 
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package happysingh.thehappychat;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -34,39 +35,38 @@ public class Email_verification extends AppCompatActivity {
         getSupportActionBar().setTitle("Email Verification");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        new FirebaseAuth.AuthStateListener(){
 
-        Email  = getIntent().getStringExtra("email");
-        Password  = getIntent().getStringExtra("password");
-        Name = getIntent().getStringExtra("name");
-        verifyemail.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
-                if(!firebaseUser.isEmailVerified())
+                if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified())
                 {
-
-                    Toast.makeText(Email_verification.this,"User Registration Successfuly",Toast.LENGTH_SHORT).show();
-
-                    String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid(); // Getting User Id Of Newly Registred Id
-                    sendDataToFirebase(Uid,Name,Email,Password); // Function to Send Data To Firebase Storage
-
                     Intent i = new Intent(Email_verification.this,MainActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  | Intent.FLAG_ACTIVITY_CLEAR_TASK);  // fOR User Not Going To Previous Page
                     startActivity(i);
                     finish();
                 }
 
-                else
-                {
-                    Toast.makeText(Email_verification.this,"You Not Clicked Yet On Verification Link",Toast.LENGTH_SHORT).show();
-                }
+
+
+
+            }
+        };
+
+        verifyemail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+               startActivity(new Intent(getBaseContext(),login_page.class));
+               finish();
 
             }
         });
 
     }
 
-    private void sendDataToFirebase(String uid, String name, String email, String password) {
+    public static void  sendDataToFirebase(String uid, String name, String email, String password , Boolean isEmailVerified) {
 
         //First Get Connection With FireBase
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -77,7 +77,8 @@ public class Email_verification extends AppCompatActivity {
         databaseReference.child("status").setValue("Hii.... I am Using The Happy Chat Which Was Created By Happy Singh");
         databaseReference.child("email").setValue(email);
         databaseReference.child("password").setValue(password);
-        databaseReference.child("image").setValue("https://firebasestorage.googleapis.com/v0/b/happy-chat-8a939.appspot.com/o/default-avatar-250x250.png?alt=media&token=9c5928ad-04d2-4781-9db4-193de25d4461");
+        databaseReference.child("image").setValue("https://www.shareicon.net/download/2015/09/18/103157_man_512x512.png");
         databaseReference.child("thumb_name").setValue("default");
+        databaseReference.child("isemailverified").setValue(isEmailVerified);
     }
 }

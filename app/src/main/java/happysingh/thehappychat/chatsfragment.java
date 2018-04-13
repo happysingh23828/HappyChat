@@ -72,8 +72,7 @@ public class chatsfragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        Query query = databaseReference
-                .limitToLast(50);
+        Query query = databaseReference;
 
 
         FirebaseRecyclerOptions<chat> options =
@@ -99,6 +98,8 @@ public class chatsfragment extends Fragment {
 
 
 
+
+
                     getUserdatabase.child(single_chat_user_id).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -119,6 +120,9 @@ public class chatsfragment extends Fragment {
                     holder.view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+
+                            FirebaseDatabase.getInstance().getReference().child("chat").child(single_chat_user_id).child(current_userid)
+                                    .child("seen").setValue(true);
 
                             Intent i = new Intent(getContext(),ChatScreen.class);
                             i.putExtra("user_id",single_chat_user_id);
@@ -194,13 +198,14 @@ public class chatsfragment extends Fragment {
         {
             textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_camera_alt_black_24dp,0,0,0); // Setting Photo Icon
             textView.setText("  Photo");
-            imageView.setImageResource(R.drawable.seen);
+            setSeen(seen);
         }
 
             if(type.equals("text") && getfrom.equals(current_userid))
             {
                 textView.setText(msg);
                 imageView.setImageResource(R.drawable.seen);
+                setSeen(seen);
             }
 
             if(type.equals("image") && !getfrom.equals(current_userid)  )
@@ -215,6 +220,20 @@ public class chatsfragment extends Fragment {
                 textView.setText(msg);
                 imageView.setVisibility(View.GONE);
             }
+
+        }
+
+        public  void  setSeen(boolean isSeen)
+        {
+            ImageView imageView =(ImageView)view.findViewById(R.id.chat_seen);
+
+            if(isSeen)
+            {
+                imageView.setImageResource(R.drawable.seen);
+            }
+            else
+                imageView.setImageResource(R.drawable.unseen);
+
 
         }
     }
