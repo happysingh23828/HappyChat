@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,6 +45,7 @@ public class chatsfragment extends Fragment {
     FirebaseAuth firebaseAuth;
     View view;
 
+
     public chatsfragment() {
         // Required empty public constructor
     }
@@ -57,7 +60,12 @@ public class chatsfragment extends Fragment {
         // Setting RecyclerView
         recyclerView = (RecyclerView)view.findViewById(R.id.chat_recyclerview);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
 
         // Setting Firebase
         firebaseAuth = FirebaseAuth.getInstance();
@@ -72,7 +80,7 @@ public class chatsfragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        Query query = databaseReference;
+        Query query = databaseReference.orderByChild("timestamp");
 
 
         FirebaseRecyclerOptions<chat> options =
@@ -100,7 +108,7 @@ public class chatsfragment extends Fragment {
 
 
 
-                    getUserdatabase.child(single_chat_user_id).addValueEventListener(new ValueEventListener() {
+                    getUserdatabase.child(single_chat_user_id).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -172,18 +180,7 @@ public class chatsfragment extends Fragment {
             final ImageView img = (ImageView) view.findViewById(R.id.chat_profile);
 
             //
-            Picasso.with(context).load(image).networkPolicy(NetworkPolicy.OFFLINE)
-                    .into(img, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            ////________For Offile Download
-                        }
-
-                        @Override
-                        public void onError() {
-                            Picasso.with(context).load(image).into(img); // this is use to
-                        }
-                    });
+            Picasso.with(context).load(image).networkPolicy(NetworkPolicy.OFFLINE).into(img);
         }
 
         public  void  setTime(Long timestamp)

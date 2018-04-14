@@ -33,6 +33,8 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -46,7 +48,7 @@ public class requestfragment extends Fragment {
     DatabaseReference databaseReference,getUserdatabase,friend_request;
     DatabaseReference userdatabase;
     RecyclerView recyclerView;
-    String current_userid,send_user_id;
+    String current_userid;
     FirebaseAuth firebaseAuth;
     View view;
     Boolean flag = false;
@@ -99,11 +101,11 @@ public class requestfragment extends Fragment {
             protected void onBindViewHolder(@NonNull final RequestViewHolder holder, int position, @NonNull requests model) {
 
                  final String user_id = getRef(position).getKey().toString();
-                 send_user_id = user_id;
+
                 final String[] user_name = new String[1];
                 final String[] img = new String[1];
 
-                    getUserdatabase.addValueEventListener(new ValueEventListener() {
+                    getUserdatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -121,14 +123,17 @@ public class requestfragment extends Fragment {
 
                 if(model.getReq_type().toString().equals("received"))
                 {
-                    holder.setButton("received");
+                    holder.setButton("received",user_id);
 
                 }
 
                 else if(model.getReq_type().toString().equals("sent"))
                 {
-                    holder.setButton("sent");
+                    holder.setButton("sent",user_id);
                 }
+
+
+
             }
         };
 
@@ -170,7 +175,7 @@ public class requestfragment extends Fragment {
             textView.setText(name);
         }
 
-        public  void  setButton(String type)
+        public  void  setButton(String type, final String send_user_id)
         {
             final Button accept = (Button)view.findViewById(R.id.single_accept_request);
             Button reject = (Button)view.findViewById(R.id.single_reject_request);
@@ -186,14 +191,48 @@ public class requestfragment extends Fragment {
 
             }
 
-            // Accepting Friend Request
             accept.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View view) {
 
-                    if (accept.getText().equals("Accept")) {
+                    if(accept.getText().toString().equals("Cancel Sent Request"))
+                    {
+                        friend_request = FirebaseDatabase.getInstance().getReference().child("friend_request_data");
+                        friend_request.child(current_userid).child(send_user_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+                                if (task.isSuccessful())
+                                {
+                                    friend_request.child(send_user_id).child(current_userid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(getContext()," Friend Request Cancelled ",Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                    else
+                    {
                         final String date = DateFormat.getLongDateFormat(getContext()).format(new Date());
 
+                        String  UidRoot  = "friend_data" + "/" + send_user_id + "/" + current_userid;
+                        String  UserRoot = "friend_data" + "/" + current_userid + "/" + send_user_id;
+                        DatabaseReference mRoot = FirebaseDatabase.getInstance().getReference();
+
+                        Map map = new HashMap();
+                        map.put("date",date);
+
+                        mRoot.child(UidRoot).updateChildren(map);
+                        mRoot.child(UserRoot).updateChildren(map);
+
+
+
+                        // Sending Images To DataBase
+
+                        //Toast.makeText(getContext(), "m  coming dude "+send_user_id, Toast.LENGTH_SHORT).show();
                         userdatabase = FirebaseDatabase.getInstance().getReference().child("friend_data").child(current_userid);
                         userdatabase.child(send_user_id).child("date").setValue(date).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -226,37 +265,12 @@ public class requestfragment extends Fragment {
                         });
                     }
 
-                    // Friend Request Cancelled
-                    if(accept.getText().equals("Cancel Sent Request"))
-                    {
-                        friend_request = FirebaseDatabase.getInstance().getReference().child("friend_request_data");
-                        friend_request.child(current_userid).child(send_user_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-
-                                if (task.isSuccessful())
-                                {
-                                    friend_request.child(send_user_id).child(current_userid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            Toast.makeText(getContext()," Friend Request Cancelled ",Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                }
-                            }
-                        });
-                    }
                 }
-
-
-
             });
 
-            // Rejecting Friend Request////
             reject.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-
+                public void onClick(View view) {
                     friend_request = FirebaseDatabase.getInstance().getReference().child("friend_request_data");
                     friend_request.child(current_userid).child(send_user_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -273,8 +287,12 @@ public class requestfragment extends Fragment {
                             }
                         }
                     });
+
                 }
             });
+
+
+
         }
     }
 }

@@ -50,7 +50,10 @@ public class HappyChat extends Application {
 
         // Setting online false When User Disconnect from App or Internet
         if(firebaseAuth.getCurrentUser()!=null) {
-            databaseReference.child("online").onDisconnect().setValue(ServerValue.TIMESTAMP);
+            if(firebaseAuth.getCurrentUser().isEmailVerified())
+            {
+                databaseReference.child("online").onDisconnect().setValue(ServerValue.TIMESTAMP);
+            }
         }
 
     }

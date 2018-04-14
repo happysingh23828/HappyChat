@@ -103,7 +103,7 @@ public class friendsfragment extends Fragment {
                 final String List_user_id = getRef(position).getKey();
                 userdatabase.child(List_user_id).addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    public void onDataChange(final DataSnapshot dataSnapshot) {
 
                         final String username = dataSnapshot.child("name").getValue().toString();
 
@@ -144,10 +144,6 @@ public class friendsfragment extends Fragment {
                                         else
                                         {
 
-                                            FirebaseDatabase.getInstance().getReference().child("chat").child(List_user_id).child(current_userid)
-                                                    .child("seen").setValue(true);
-                                            FirebaseDatabase.getInstance().getReference().child("chat").child(current_userid).child(List_user_id)
-                                                    .child("seen").setValue(true);
 
 
                                             Intent i = new Intent(getContext(),ChatScreen.class);

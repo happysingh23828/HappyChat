@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,6 +41,8 @@ public class Profile_Activity extends AppCompatActivity {
     String current_uid = FirebaseAuth.getInstance().getCurrentUser().getUid();;
     DatabaseReference friend_request;
     DatabaseReference friend_data;
+    private AdView mAdView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,10 @@ public class Profile_Activity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("User Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mAdView = findViewById(R.id.adViewprofile);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         userid = getIntent().getStringExtra("user_id");
         name = (TextView)findViewById(R.id.user_profile_name);
@@ -72,6 +80,8 @@ public class Profile_Activity extends AppCompatActivity {
         final DatabaseReference databaseReference = firebaseDatabase.getReference().child("Users").child(userid);
 
         databaseReference.keepSynced(true);
+
+
 
         // Getting selected user Profile Details
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -122,7 +132,7 @@ public class Profile_Activity extends AppCompatActivity {
 
                 friend_request = FirebaseDatabase.getInstance().getReference("friend_request_data").child(current_uid);
 
-                friend_request.addListenerForSingleValueEvent(new ValueEventListener() {
+                friend_request.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -142,6 +152,39 @@ public class Profile_Activity extends AppCompatActivity {
                                 deleteRequest.setEnabled(true);
                                 sendRequest.setText("Accept Friend Request");
                             }
+                        }
+                        else {
+
+                            FirebaseDatabase.getInstance().getReference().child("friend_data").child(current_uid).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                    if(dataSnapshot.hasChild(userid))
+                                    {
+                                        current_status="friend";
+                                        sendRequest.setText("Unfriend This Person");
+                                        deleteRequest.setVisibility(View.INVISIBLE);
+                                        deleteRequest.setEnabled(false);
+                                    }
+                                    else {
+                                        current_status="not_friend";
+                                        sendRequest.setText("Send Friend Request");
+                                        sendRequest.setEnabled(true);
+                                        deleteRequest.setVisibility(View.GONE);
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+
+
+
                         }
                     }
 
@@ -262,13 +305,21 @@ public class Profile_Activity extends AppCompatActivity {
 
                 if(current_status.equals("friend"))
                 {
+
                     friend_data = FirebaseDatabase.getInstance().getReference().child("friend_data");
-                    friend_data.child(current_uid).addValueEventListener(new ValueEventListener() {
+
+
+                    friend_data.child(current_uid).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
                             if(dataSnapshot.hasChild(userid))
                             {
+                                FirebaseDatabase.getInstance().getReference().child("messages").child(current_uid).child(userid).removeValue();
+                                FirebaseDatabase.getInstance().getReference().child("messages").child(userid).child(current_uid).removeValue();
+                                FirebaseDatabase.getInstance().getReference().child("chat").child(current_uid).child(userid).removeValue();
+                                FirebaseDatabase.getInstance().getReference().child("chat").child(userid).child(current_uid).removeValue();
+
                                 friend_data.child(userid).child(current_uid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {

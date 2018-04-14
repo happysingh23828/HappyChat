@@ -9,11 +9,22 @@ public class Users  {
     String name;
     String image;
     String status;
+    Boolean isemailverified;
 
-    public Users(String name, String image, String status) {
+    public Boolean getIsemailverified() {
+        return isemailverified;
+    }
+
+    public void setIsemailverified(Boolean isemailverified) {
+        this.isemailverified = isemailverified;
+    }
+
+    public Users(String name, String image, String status, Boolean isemailverified) {
+
         this.name = name;
         this.image = image;
         this.status = status;
+        this.isemailverified = isemailverified;
     }
 
     public  Users()

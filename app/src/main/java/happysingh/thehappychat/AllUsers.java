@@ -28,6 +28,8 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,12 +59,18 @@ public class AllUsers extends AppCompatActivity {
     EditText search_text;
     String searching_friend;
     ImageView search_btn;
+    private AdView mAdView;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_users);
+
+        mAdView = findViewById(R.id.adViewalluser);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         //setting Toolbar
         search_text =(EditText)findViewById(R.id.search_user_text);
@@ -130,6 +138,17 @@ public class AllUsers extends AppCompatActivity {
                 holder.setName(model.getName());
                 holder.setStatus(model.getStatus());
                 holder.setImage(model.getImage());
+
+                if(!model.isemailverified)
+                {
+                    holder.view.setLayoutParams(new ViewGroup.LayoutParams(0,0));
+                }
+
+                if(getRef(position).getKey().equals(mauth.getCurrentUser().getUid()))
+                {
+                    holder.view.setLayoutParams(new ViewGroup.LayoutParams(0,0));
+
+                }
 
                   // Identifying User profile On Which   Clicked
                 holder.view.setOnClickListener(new View.OnClickListener() {

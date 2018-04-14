@@ -99,7 +99,7 @@ public class Signup_page extends AppCompatActivity {
         // We Have To Check validation Here But We Will Do It Further
 
         // Getting FireBase Authorization Access
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         //sending data to firebase authentication data storage
         mAuth.createUserWithEmailAndPassword(Email,Password)
@@ -120,6 +120,7 @@ public class Signup_page extends AppCompatActivity {
                                                 progressDialog.dismiss();
                                                 Email_verification email_verification  = new Email_verification();
                                                 email_verification.sendDataToFirebase(user.getUid(),Name,Email,Password,false);
+
                                                 Intent i = new Intent(Signup_page.this,Email_verification.class);
                                                 startActivity(i);
                                             }

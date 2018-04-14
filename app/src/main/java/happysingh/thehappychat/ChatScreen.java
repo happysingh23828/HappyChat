@@ -24,6 +24,8 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,12 +66,18 @@ public class ChatScreen extends AppCompatActivity {
     ProgressDialog progressDialog;
     LinearLayoutManager mLayoutManager;
     private  static  final  int GALLERY_PICK=1;
+    private AdView mAdView;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_screen);
+        mAdView = findViewById(R.id.adViewchat);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
 
 
         send_msg = (ImageView)findViewById(R.id.send);

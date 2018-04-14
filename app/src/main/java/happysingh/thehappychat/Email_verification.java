@@ -27,6 +27,8 @@ public class Email_verification extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_verification);
+
+        FirebaseAuth.getInstance().signOut();
         verifyemail = (Button)findViewById(R.id.verifyemail);
 
         //setting Toolbar
