@@ -9,5 +9,5 @@ App Features:
 * Seen Features etc.
   
   # Demo of Happy Chat
-  <img src="https://im3.ezgif.com/tmp/ezgif-3-1fc34bea73.gif"></br>
+  <img src="https://github.com/happysingh23828/TheHappyChat/blob/master/Screenshots/happychat.gif"></br>
   <center><a href="https://play.google.com/store/apps/details?id=happysingh.thehappychat"><img width="200" height="100" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"></a></center>
