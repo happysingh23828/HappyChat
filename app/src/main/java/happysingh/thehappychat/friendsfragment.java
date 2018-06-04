@@ -206,7 +206,7 @@ public class friendsfragment extends Fragment {
 
                         @Override
                         public void onError() {
-                            Picasso.with(context).load(image).into(img); // this is use to
+                            Picasso.with(context).load(image).resize(100,100).centerCrop().into(img); // this is use to
                         }
                     });
         }

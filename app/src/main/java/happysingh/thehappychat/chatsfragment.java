@@ -180,7 +180,7 @@ public class chatsfragment extends Fragment {
             final ImageView img = (ImageView) view.findViewById(R.id.chat_profile);
 
             //
-            Picasso.with(context).load(image).networkPolicy(NetworkPolicy.OFFLINE).into(img);
+            Picasso.with(context).load(image).resize(100,100).centerCrop().networkPolicy(NetworkPolicy.OFFLINE).into(img);
         }
 
         public  void  setTime(Long timestamp)

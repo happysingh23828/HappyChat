@@ -121,7 +121,7 @@ public class AllUsers extends AppCompatActivity {
         Query query = databaseReference.orderByChild("name")
                 .startAt(searching_friend)
                 .endAt(searching_friend + "\uf8ff")
-                .limitToLast(20);
+                ;
 
 
         FirebaseRecyclerOptions<Users> options =
@@ -221,7 +221,7 @@ public class AllUsers extends AppCompatActivity {
 
                 @Override
                 public void onError() {
-                    Picasso.with(c).load(image).into(img);
+                    Picasso.with(c).load(image).resize(100,100).centerCrop().into(img);
                 }
             });
 
