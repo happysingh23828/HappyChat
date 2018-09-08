@@ -9,13 +9,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
+
+import happysingh.thehappychat.Utils.Utils;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,6 +31,9 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText email,password;
     FirebaseAuth firebaseAuth;
     ProgressDialog progressDialog,progressDialog1;
+    RelativeLayout parent;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
@@ -33,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         password = (TextInputEditText)findViewById(R.id.et_login_password);
         reset = (TextView) findViewById(R.id.et_login_reset);
         signup = (TextView)findViewById(R.id.bt_signup_signup);
+        parent = findViewById(R.id.parent);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,11 +59,11 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(email.getText().toString()))
                 {
-                    email.setError("enter email");
+                    Utils.snackBar(parent,"Enter Email");
                 }
                 else if(TextUtils.isEmpty(password.getText().toString()))
                 {
-                    password.setError("enter password");
+                    Utils.snackBar(parent,"Enter Password");
                 }
                 else
                  {
@@ -70,9 +81,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(LoginActivity.this,PasswordReset.class);
+                Intent i = new Intent(LoginActivity.this,PasswordResetActivity.class);
                  startActivity(i);
-                finish();
             }
         });
 
@@ -83,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
         String Email = email.getText().toString();
         String Password = password.getText().toString();
 
-        // Getting To Firebase Datebase Seeting Or Connectivity
+        // Getting To FireBase DateBase Setting Or Connectivity
         firebaseAuth = FirebaseAuth.getInstance();
 
 
@@ -94,17 +104,39 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())
                             {
+                                final FirebaseUser user= firebaseAuth.getCurrentUser();
+                                if(!user.isEmailVerified())
+                                {
+                                    user.sendEmailVerification()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        progressDialog.dismiss();
+                                                        Intent i = new Intent(LoginActivity.this,Email_verification.class);
+                                                        i.putExtra("email",user.getEmail().toString());
+                                                        startActivity(i);
+                                                        finish();
+                                                    }
+                                                    progressDialog.dismiss();
+
+                                                }
+                                            });
+                                } else {
+                                        databaseReference.child(firebaseAuth.getCurrentUser().getUid()).child("isemailverified").setValue(true);
+                                    databaseReference.child(firebaseAuth.getCurrentUser().getUid()).child("online").setValue("true");
+                                    Intent i = new Intent(LoginActivity.this,MainActivity.class);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  | Intent.FLAG_ACTIVITY_CLEAR_TASK);// for user not going to previous page
+                                    startActivity(i);
+                                    finish();
+                                }
                                 progressDialog.dismiss();
-                                Toast.makeText(LoginActivity.this,"Login Successfuly",Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(LoginActivity.this,MainActivity.class);
-                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  | Intent.FLAG_ACTIVITY_CLEAR_TASK);// for user not going to previous page
-                                startActivity(i);
-                                finish();
+
                             }
                             else
                             {
                                 progressDialog.cancel();
-                                Toast.makeText(LoginActivity.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                                Utils.snackBar(parent, Objects.requireNonNull(task.getException()).getMessage());
                             }
                     }
                 });

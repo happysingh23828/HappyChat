@@ -66,10 +66,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
         tabLayout.setupWithViewPager(viewPager);
 
-
-
-
-
     }
 
     @Override
@@ -82,34 +78,7 @@ public class MainActivity extends AppCompatActivity {
         {
             gotostartpage();
         }
-        else if(!user.isEmailVerified())
-        {
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.setTitle("Sending You Email.....");
-            progressDialog.setMessage("Please Wait While Sending an Email");
-            progressDialog.show();
-            user.sendEmailVerification()
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                progressDialog.dismiss();
-                                Intent i = new Intent(MainActivity.this,Email_verification.class);
-                                i.putExtra("email",user.getEmail().toString());
-                                startActivity(i);
-                                finish();
-                            }
-                            progressDialog.dismiss();
 
-                        }
-                    });
-        }
-
-        else
-        {
-            databaseReference.child(mauth.getCurrentUser().getUid()).child("isemailverified").setValue(true);
-            databaseReference.child(mauth.getCurrentUser().getUid()).child("online").setValue("true");
-        }
     }
 
 
