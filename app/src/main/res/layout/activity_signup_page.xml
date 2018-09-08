@@ -3,135 +3,165 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context="happysingh.thehappychat.Signup_page">
+    android:id="@+id/parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="happysingh.thehappychat.SignUpActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/backgroundlightgreen"
+        android:scaleType="centerCrop"/>
 
-    <include layout="@layout/tool_bar_my" android:id="@+id/signup_toolbar"/>
+    <ImageView
+        android:id="@+id/back_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:src="@drawable/ic_keyboard_arrow_left_white_24dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="10"
+        android:layout_marginTop="40dp">
 
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="The Happy Chat "
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="Meet New Friends !!"
+            android:textColor="@android:color/white"
             android:textSize="30sp"
-            android:textColor="#fff"
-            android:fontFamily="@font/alfa_slab_one"
-            android:paddingTop="70dp"
-            android:textAlignment="center"
-            android:layout_weight="3"/>
+            android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/et_signup_name"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_height="3dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#ffffff" />
 
-            android:layout_marginRight="30dp"
-            android:background="@drawable/single_edit_text"
-            android:padding="10dp"
-            android:ems="10"
-            android:hint="Enter Your Name"
-            android:inputType="textCapWords"
-            android:textColor="#37373A"
-            android:textSize="20sp"
-
-
-            />
-
-        <EditText
-            android:id="@+id/et_signup_email"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:layout_marginTop="30dp"
-            android:inputType="textEmailAddress"
-            android:hint="Enter Yor Email"
-            android:padding="10dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/single_edit_text"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Sign Up"
+            android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:textColor="#37373A"
-
-
-            />
-
-        <EditText
-            android:id="@+id/et_signup_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:hint="Password"
-            android:textColor="#37373A"
-            android:padding="10dp"
-            android:layout_margin="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/single_edit_text"
-            android:textSize="20sp"
-
-            />
-
-        <Button
-            android:id="@+id/bt_signup_signup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SIGN UP"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:textSize="20sp"
-            android:textColor="#fff"
-            android:background="@drawable/single_shape_button_2"
-            android:layout_marginBottom="20dp"
-
-            android:fontFamily="@font/black_ops_one"
-
-            />
-
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:textSize="20sp"
-                android:textColor="#fff"
-                android:fontFamily="@font/londrina_solid"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginBottom="10dp"
-                android:text="Have Account ?"/>
+                android:hint="Your Name"
+                android:imeOptions="flagNavigateNext"
+                android:textColorHint="@android:color/white">
 
-            <Button
-                android:id="@+id/bt_signup_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/et_signup_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="flagNavigateNext"
+                    android:lines="1"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@android:color/white"
+                    android:textColor="@android:color/white" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Login"
-                android:background="@drawable/single_button_shape"
-                android:layout_marginRight="35dp"
-                android:layout_marginTop="5dp"
-                android:textSize="15sp"
-                android:textColor="#fff"
-                android:fontFamily="@font/bungee_inline"
-                android:layout_marginBottom="10dp"
-                />
+                android:hint="Your Email"
+                android:imeOptions="flagNavigateNext"
+                android:textColorHint="@android:color/white">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/et_signup_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="flagNavigateNext"
+                    android:lines="1"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="@android:color/white"
+                    android:textColor="@android:color/white" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="Your Password"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@android:color/white"
+                android:textColorHint="@android:color/white">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/et_signup_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:imeOptions="actionDone"
+                    android:lines="1"
+                    android:textColorHint="@android:color/white"
+                    android:shadowColor="@android:color/white"
+                    android:textColor="@android:color/white" />
+
+            </android.support.design.widget.TextInputLayout>
+
         </LinearLayout>
 
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/bt_signup_signup"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+            />
+
+        <TextView
+            android:id="@+id/email_sent_textview"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:visibility="gone"
+
+            android:text="PLease Verify Your Email \n We have sent you a verification link \n at"
+            />
+
+        <TextView
+            android:id="@+id/email_sent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Happysingh@gmil.com"
+            />
 
     </LinearLayout>
 </RelativeLayout>

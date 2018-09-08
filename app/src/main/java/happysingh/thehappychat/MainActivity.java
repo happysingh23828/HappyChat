@@ -2,20 +2,15 @@ package happysingh.thehappychat;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ToolbarWidgetWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -100,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 progressDialog.dismiss();
                                 Intent i = new Intent(MainActivity.this,Email_verification.class);
-
+                                i.putExtra("email",user.getEmail().toString());
                                 startActivity(i);
                                 finish();
                             }
@@ -194,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
 
     // This Is Created For Going To back Main Start PAge
     private void gotostartpage() {
-        Intent i = new Intent(MainActivity.this,Splash_screen.class);
+        Intent i = new Intent(MainActivity.this,LoginActivity.class);
         startActivity(i);
         finish();
     }

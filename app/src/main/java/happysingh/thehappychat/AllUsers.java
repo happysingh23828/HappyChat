@@ -121,7 +121,7 @@ public class AllUsers extends AppCompatActivity {
         Query query = databaseReference.orderByChild("name")
                 .startAt(searching_friend)
                 .endAt(searching_friend + "\uf8ff")
-                .limitToLast(20);
+                ;
 
 
         FirebaseRecyclerOptions<Users> options =
@@ -139,10 +139,10 @@ public class AllUsers extends AppCompatActivity {
                 holder.setStatus(model.getStatus());
                 holder.setImage(model.getImage());
 
-                if(!model.isemailverified)
-                {
-                    holder.view.setLayoutParams(new ViewGroup.LayoutParams(0,0));
-                }
+//                if(!model.isemailverified)
+//                {
+//                    holder.view.setLayoutParams(new ViewGroup.LayoutParams(0,0));
+//                }
 
                 if(getRef(position).getKey().equals(mauth.getCurrentUser().getUid()))
                 {

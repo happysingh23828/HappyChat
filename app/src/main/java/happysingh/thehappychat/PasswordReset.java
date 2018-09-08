@@ -6,17 +6,14 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.squareup.okhttp.internal.Util;
 
 public class PasswordReset extends AppCompatActivity {
 
@@ -65,7 +62,7 @@ public class PasswordReset extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         progressDialog1.dismiss();
                                         Toast.makeText(PasswordReset.this,"Password Link Has Been Sent To  Your Email",Toast.LENGTH_LONG).show();
-                                        Intent i = new Intent(PasswordReset.this,login_page.class);
+                                        Intent i = new Intent(PasswordReset.this,LoginActivity.class);
                                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  | Intent.FLAG_ACTIVITY_CLEAR_TASK);  // fOR User Not Going To Previous Page
                                         startActivity(i);
                                         finish();

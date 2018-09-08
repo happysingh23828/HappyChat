@@ -7,7 +7,7 @@ android {
         applicationId "happysingh.thehappychat"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 3
+        versionCode 4
         versionName "1.0.1"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
