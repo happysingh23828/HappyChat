@@ -5,8 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="happysingh.thehappychat.SettingActivity"
-    android:background="@drawable/background">
-    <include layout="@layout/tool_bar_my" android:id="@+id/profile_tool"/>
+    >
+    <include layout="@layout/tool_bar_my"
+        android:id="@+id/profile_tool"/>
+
+    <ImageView
+        android:layout_below="@id/profile_tool"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/backgroundlightgreen"
+        android:scaleType="centerCrop"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

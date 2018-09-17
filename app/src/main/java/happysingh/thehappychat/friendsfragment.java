@@ -197,7 +197,7 @@ public class friendsfragment extends Fragment {
 
             final ImageView img = (ImageView) view.findViewById(R.id.profile_id_single_user);;
             //
-            Picasso.with(context).load(image).networkPolicy(NetworkPolicy.OFFLINE)
+            Picasso.with(context).load(image).networkPolicy(NetworkPolicy.OFFLINE).resize(100,100).centerCrop()
                     .into(img, new Callback() {
                         @Override
                         public void onSuccess() {
@@ -206,7 +206,7 @@ public class friendsfragment extends Fragment {
 
                         @Override
                         public void onError() {
-                            Picasso.with(context).load(image).into(img); // this is use to
+                            Picasso.with(context).load(image).resize(100,100).centerCrop().into(img); // this is use to
                         }
                     });
         }

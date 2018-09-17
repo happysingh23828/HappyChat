@@ -139,10 +139,10 @@ public class AllUsers extends AppCompatActivity {
                 holder.setStatus(model.getStatus());
                 holder.setImage(model.getImage());
 
-//                if(!model.isemailverified)
-//                {
-//                    holder.view.setLayoutParams(new ViewGroup.LayoutParams(0,0));
-//                }
+                if(model.isemailverified==null || !model.isemailverified || model.name==null)
+                {
+                    holder.view.setLayoutParams(new ViewGroup.LayoutParams(0,0));
+                }
 
                 if(getRef(position).getKey().equals(mauth.getCurrentUser().getUid()))
                 {
@@ -213,7 +213,7 @@ public class AllUsers extends AppCompatActivity {
 
           //  Picasso.with(c).load(image).into(img);
 
-            Picasso.with(c).load(image).networkPolicy(NetworkPolicy.OFFLINE).into(img, new Callback() {
+            Picasso.with(c).load(image).networkPolicy(NetworkPolicy.OFFLINE).resize(100,100).centerCrop().into(img, new Callback() {
                 @Override
                 public void onSuccess() {
                             // Offline Download
@@ -221,7 +221,7 @@ public class AllUsers extends AppCompatActivity {
 
                 @Override
                 public void onError() {
-                    Picasso.with(c).load(image).into(img);
+                    Picasso.with(c).load(image).resize(100,100).centerCrop().into(img);
                 }
             });
 

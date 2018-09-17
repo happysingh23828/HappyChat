@@ -88,6 +88,7 @@ public class Profile_Activity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+
                 String Name = dataSnapshot.child("name").getValue().toString();
                 String Status = dataSnapshot.child("status").getValue().toString();
                 final String Img = dataSnapshot.child("image").getValue().toString();
