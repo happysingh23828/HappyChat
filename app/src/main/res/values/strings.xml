@@ -6,4 +6,5 @@
     <string name="photo_icon">[@drawable/camera-clip-art-779062] Photo</string>
     <string name="myadd_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="myabanner_dd_unit_id">ca-app-pub-1531608517656674/7616843484</string>
+    <string name="login">LOGIN</string>
 </resources>

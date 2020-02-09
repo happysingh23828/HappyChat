@@ -340,7 +340,7 @@ public class ChatScreen extends AppCompatActivity {
         final int[] positionitem = new int[1];
 
         Query query = rootref.child("messages").child(uid).child(current_user)
-                .limitToLast(30);
+                ;
 
         FirebaseRecyclerOptions<messages> options = new FirebaseRecyclerOptions.Builder<messages>()
                 .setQuery(query,messages.class)
@@ -430,6 +430,7 @@ public class ChatScreen extends AppCompatActivity {
         public MsgViewHolder(View itemView) {
             super(itemView);
             this.view=itemView;
+            c = view.getContext();
         }
 
         public void setMsg(final String msg , String msg_type , String type)
@@ -467,9 +468,9 @@ public class ChatScreen extends AppCompatActivity {
             {
                 textView.setText(msg);
                 imageView.setVisibility(View.GONE);
-                textView.setTextColor(Color.BLACK);
+                textView.setTextColor(Color.WHITE);
                 textView.setBackgroundResource(R.drawable.single_msg_background);
-                textView.setBackgroundColor(Color.WHITE);
+                textView.setBackgroundColor( c.getResources().getColor(R.color.colorPrimaryDark));
             }
 
 

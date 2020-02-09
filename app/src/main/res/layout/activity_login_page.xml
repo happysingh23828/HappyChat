@@ -4,107 +4,137 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context="happysingh.thehappychat.login_page">
+    android:weightSum="15"
+    android:id="@+id/parent"
+    tools:context="happysingh.thehappychat.LoginActivity">
 
-    <include layout="@layout/tool_bar_my" android:id="@+id/login_toolbar"/>
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/backgroundlightgreen"
+        android:scaleType="centerCrop"/>
     <LinearLayout
-        android:layout_below="@id/login_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        >
+        android:weightSum="15">
 
-
-
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_weight="3"
-            android:layout_marginBottom="20dp"
-            app:srcCompat="@drawable/icon" />
-
-        <EditText
-
-            android:id="@+id/et_login_email"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:hint="Enter Your Email"
-            android:inputType="textPersonName"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:text="Welcome!"
             android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:textCursorDrawable="@android:color/white"
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
-
-
-            />
-
-        <EditText
-            android:id="@+id/et_login_password"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:hint="Enter Your Password"
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:gravity="top |center"
+            android:text="Hope you Enjoy the Stay"
             android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:backgroundTint="@android:color/white"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#ffffff" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/login"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="Your Email"
+                android:imeOptions="flagNavigateNext"
+                android:textColorHint="@android:color/white">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/et_login_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="flagNavigateNext"
+                    android:lines="1"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="@android:color/white"
+                    android:textColor="@android:color/white" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="Your Password"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@android:color/white"
+                android:textColorHint="@android:color/white">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/et_login_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:imeOptions="actionDone"
+                    android:lines="1"
+                    android:textColorHint="@android:color/white"
+                    android:shadowColor="@android:color/white"
+                    android:textColor="@android:color/white" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
 
 
-            />
-
-        <Button
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/bt_login_login"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.7"
-            android:text="LOGIN"
+            android:layout_gravity="center"
+            android:layout_weight="1.2"
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
 
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+        <TextView
+            android:id="@+id/et_login_reset"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="top |center"
+            android:text="Forgot Password"
+            android:textColor="@android:color/white"
+            android:textSize="17sp" />
 
-            android:textColor="#fff"
-            android:background="@android:color/holo_red_dark"
-            android:fontFamily="@font/black_ops_one"
-            android:layout_marginTop="5dp"
-
-            />
-
-
-
-            <Button
-                android:layout_marginTop="5dp"
-                android:id="@+id/et_login_reset"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.7"
-                android:text="Reset Password"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="@android:color/holo_blue_bright"
-
-                android:textColor="#fff"
-                android:fontFamily="@font/bungee_inline"
-                android:layout_marginBottom="10dp"
-                />
-
-
-
+        <TextView
+            android:id="@+id/bt_signup_signup"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom |center"
+            android:text="Sign up for an account ?"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
     </LinearLayout>
-
-
-
-
 
 </RelativeLayout>

@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,21 +22,19 @@ public class Email_verification extends AppCompatActivity {
     String Email;
     String Password;
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    Toolbar toolbar;
-
+    ImageView backImage;
+    Button backButton;
+    TextView email ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_verification);
 
         FirebaseAuth.getInstance().signOut();
-        verifyemail = (Button)findViewById(R.id.verifyemail);
-
-        //setting Toolbar
-        toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.email_verify_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Email Verification");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        backImage = findViewById(R.id.back_image);
+        backButton = findViewById(R.id.back_button);
+        email = findViewById(R.id.email);
+        email.setText(getIntent().getStringExtra("email"));
 
         new FirebaseAuth.AuthStateListener(){
 
@@ -49,20 +48,25 @@ public class Email_verification extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 }
-
-
-
-
             }
         };
 
-        verifyemail.setOnClickListener(new View.OnClickListener() {
+
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                Intent i = new Intent(Email_verification.this,LoginActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
-               startActivity(new Intent(getBaseContext(),login_page.class));
-               finish();
-
+        backImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Email_verification.this,LoginActivity.class);
+                startActivity(i);
+                finish();
             }
         });
 

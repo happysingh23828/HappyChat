@@ -25,10 +25,10 @@
         </activity>
         <activity android:name=".start_page"  android:screenOrientation="portrait" />
         <activity
-            android:name=".login_page"
+            android:name=".LoginActivity"
             android:parentActivityName=".start_page" />
         <activity
-            android:name=".Signup_page"  android:screenOrientation="portrait"
+            android:name=".SignUpActivity"  android:screenOrientation="portrait"
             android:parentActivityName=".start_page" />
 
         <meta-data
@@ -55,8 +55,8 @@
             android:parentActivityName=".MainActivity" />
         <activity android:name=".Splash_screen"  android:screenOrientation="portrait" />
 
-        <activity android:name=".Email_verification" android:parentActivityName=".Signup_page"  android:screenOrientation="portrait"/>
-        <activity android:name=".PasswordReset" android:parentActivityName=".login_page"  android:screenOrientation="portrait"></activity>
+        <activity android:name=".Email_verification" android:parentActivityName=".SignUpActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".PasswordResetActivity" android:parentActivityName=".LoginActivity"  android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
